@@ -16,21 +16,21 @@ class Customer {
 		std::vector<Bike> displayCustomersBikes(const int& customerId);
 
 		//adds a bike object to the vector of bikes belonging to a customer
-		void addBikeToCustomer(Bike bike, const int& customerId);
+		void addBikeToCustomer(const Bike& bike);
 		
 		//removes a bike from customer bike vector
-		void removeBikeFromCustomer(Bike bike, const int& customerId);
+		void removeBikeFromCustomer(const Bike& bike);
 
 		//might be easier to use setters for this? 
 		//can update name, phone, email, 
-		void updateCustomerInfo();
+		void updateCustomerInfo(std::string firstName, std::string lastName, std::string phoneNumber);
 
-		//extra methods for searching for customer
-		Customer* findCustomerByPhoneNumber(std::string phoneNumber);
+		//extra methods for searching for customer. May not be necessay but will be nice for extra flavor and eventual functoinality
+		Customer* findCustomerByPhoneNumber(const std::string& phoneNumber);
 
-		Customer* findCustomerByLastName(std::string lastName);
+		Customer* findCustomerByLastName(const std::string& lastName);
 	
-		Customer* findCustomerByFirstName(std::string firstName);
+		Customer* findCustomerByFirstName(const std::string& firstName);
 
 		//getters and setters
 		int getCustomerID();
@@ -40,6 +40,8 @@ class Customer {
 		std::string getLastName();
 
 		std::string getPhoneNumber();
+
+		Customer* getCustomer(const int& customerId); 
 
 		//std::string getEmail();
 
