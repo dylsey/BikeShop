@@ -46,7 +46,7 @@ public:
 
 	//not sure if i will need more getters for work order class
 	//gets all the bikes
-	//std::vector<Bike> getAllBikes();
+	std::vector<Bike> getAllBikes();
 
 
 
