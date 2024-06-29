@@ -24,18 +24,16 @@ public:
 	//retruns the vector of work history for each bike
 	std::vector<WorkOrder> displayWorkHistoryByBike();
 
-	Bike* getBike(const int& bikeId);
+	Bike* getBike(const int& bikeId, std::vector<Bike> bikes);
 
 
 
 private:
-	const int bikeid{};
+	const int bikeId{};
 	std::string bikeMake{};
 	std::string bikeModel{};
 	int size{};
 	std::string color{};
 	std::string bikeDescription{};
 	std::vector<WorkOrder> workHistory{};
-
-
 }

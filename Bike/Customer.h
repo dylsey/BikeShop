@@ -4,7 +4,9 @@
 #include <vector>
 #include "Bike.h"
 
-class Customer {
+
+class Customer 
+{
 	public:
 		//default constructor
 		Customer();
@@ -43,13 +45,6 @@ class Customer {
 
 		Customer* getCustomer(const int& customerId); 
 
-		//std::string getEmail();
-
-		//std::string getAddress();
-
-		
-
-		
 
 private:
 	const int customerId{};
@@ -57,10 +52,5 @@ private:
 	std::string lastName{};
 	std::string phoneNumber{};
 	std::vector<Bike> bikes{};
-	//std::string email{}; 
-	//std::string address{};
-	
-
-
 
 };		
