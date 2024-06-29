@@ -6,11 +6,12 @@
 
 class Bike {
 public:
+	static int lastBikeId;
 	//default constructor;
 	Bike();
 
 	//conversion AKA overloaded constructor
-	Bike(const int bikeId, std::string bikeMake, std::string bikeModel, int size, std::string color, std::string bikeDescription);
+	Bike(const int& bikeId, std::string bikeMake, std::string bikeModel, int size, std::string color);
 
 	//method to display all of the information stored about the bike object that is defined by the members 
 	std::string displayBikeDetails();
@@ -24,16 +25,24 @@ public:
 	//retruns the vector of work history for each bike
 	std::vector<WorkOrder> displayWorkHistoryByBike();
 
+	int getBikeId() const;
+	std::string getBikeMake() const;
+	std::string getBikeModel() const;
+	int getBikesize();
+	std::string getBikeColor() const;
+
 	Bike* getBike(const int& bikeId, std::vector<Bike> bikes);
 
 
 
 private:
-	const int bikeId{};
+	int bikeId{};
 	std::string bikeMake{};
 	std::string bikeModel{};
 	int size{};
 	std::string color{};
-	std::string bikeDescription{};
 	std::vector<WorkOrder> workHistory{};
+	//what is the description used for? 
+	//std::string bikeDescription{};
+	
 }
