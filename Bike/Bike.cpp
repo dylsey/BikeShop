@@ -4,7 +4,7 @@
 #include <iostream>
 
 int Bike::lastBikeId{ 0 };
-
+//default constructor;
 Bike::Bike()
 {
 	lastBikeId++;
@@ -24,9 +24,9 @@ Bike::Bike()
 	std::cin >> color; 
 
 }
-
-Bike::Bike(const int& bikeId, std::string bikeMake, std::string bikeModel, int size, std::string color)
-	:bikeId(bikeId), bikeMake(bikeMake), bikeModel(bikeModel), size(size), color(color)
+//conversion AKA overloaded constructor
+Bike::Bike(const int& bikeId, std::string bikeMake, std::string bikeModel, int size, std::string color, std::vector<WorkOrder> workHistory)
+	:bikeId(bikeId), bikeMake(bikeMake), bikeModel(bikeModel), size(size), color(color), workHistory(workHistory)
 {
 		
 }
@@ -42,8 +42,9 @@ std::string Bike::updateBikeDetail()
 	return std::string();
 }
 
-void Bike::addWorkHistory(const WorkOrder& workHistory)
+void Bike::addWorkHistory(const WorkOrder& workHistory, std::string workDescription)
 {
+
 }
 
 std::vector<WorkOrder> Bike::displayWorkHistoryByBike()
@@ -79,7 +80,13 @@ std::string Bike::getBikeColor() const
 
 Bike* Bike::getBike(const int& bikeId, std::vector<Bike> bikes)
 {
+	for (auto& bike : bikes)
+	{
+		if (bike.getBikeId() == bikeId)
+		{
+			return &bike;
+		}
+	}
 
-
-	return &Bike;
+	
 }

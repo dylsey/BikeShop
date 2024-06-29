@@ -4,12 +4,24 @@
 #include "Bike.h"
 #include "Customer.h"
 
-
+int Customer::lastCustomerId{ 0 };
 //default constructor
 Customer::Customer()
-	: customerId(), firstName(""), lastName(""), phoneNumber(""), email(""), address(""), bikes()
 {
+	lastCustomerId++;
+	customerId = lastCustomerId;
 
+	std::cout << "What is the customer's first name?" << std::endl;
+	std::cin >> firstName;
+	
+	std::cout << "What is the customer's last name?" << std::endl;
+	std::cin >> lastName;
+
+	std::cout << "What is the customer's phone number?" << std::endl;
+	std::cin >> phoneNumber;
+
+	//creates a vector of bikes for each customer
+	std::vector<Bike> bikes{};
 }
 
 //overload AKA conversion constructor
@@ -22,7 +34,10 @@ Customer::Customer(const int& customerId, std::string firstName, std::string las
 //gets all the bikes belonging to a customer by passed customer id
 std::vector<Bike> Customer::displayCustomersBikes(const int& customerId)
 {
-	return std::vector<Bike>();
+	std::vector<Bike> bikes; 
+
+
+
 }
 
 //adds a bike object to the vector of bikes belonging to a customer
@@ -62,29 +77,29 @@ Customer* Customer::findCustomerByFirstName(const std::string& firstName)
 
 //getters and setters
 
-int Customer::getCustomerID()
+int Customer::getCustomerID() const
 {
-	return 0;
+	return customerId;
 }
 
-std::string Customer::getFirstName()
+std::string Customer::getFirstName() const
+{
+	return firstName;
+}
+
+
+std::string Customer::getLastName() const
 {
 	return std::string();
 }
 
-
-std::string Customer::getLastName()
-{
-	return std::string();
-}
-
-std::string Customer::getPhoneNumber()
+std::string Customer::getPhoneNumber() const
 {
 	return std::string();
 }
 
 Customer* Customer::getCustomer(const int& customerId)
 {
-	return nullptr;
+	return &;
 }
 

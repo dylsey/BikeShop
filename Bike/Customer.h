@@ -1,18 +1,19 @@
 #pragma once
-#include <iostream>
 #include <string>
 #include <vector>
 #include "Bike.h"
 
+class Bike;
 
 class Customer 
 {
 	public:
+		static int lastCustomerId;
 		//default constructor
 		Customer();
 
 		//overload AKA conversion constructor
-		Customer(const int &customerId, std::string firstName, std::string lastName, std::string phoneNumber, std::string email, std::string address, std::vector<Bike>& bikes);
+		Customer(const int& customerId, std::string firstName, std::string lastName, std::string phoneNumber, std::string email, std::string address, std::vector<Bike>& bikes);
 
 		//gets all the bikes belonging to a customer by passed customer id
 		std::vector<Bike> displayCustomersBikes(const int& customerId);
@@ -35,19 +36,19 @@ class Customer
 		Customer* findCustomerByFirstName(const std::string& firstName);
 
 		//getters and setters
-		int getCustomerID();
+		int getCustomerID() const;
 
-		std::string getFirstName();
+		std::string getFirstName() const;
 
-		std::string getLastName();
+		std::string getLastName() const;
 
-		std::string getPhoneNumber();
+		std::string getPhoneNumber() const; 
 
 		Customer* getCustomer(const int& customerId); 
 
 
 private:
-	const int customerId{};
+	int customerId{};
 	std::string firstName{};
 	std::string lastName{};
 	std::string phoneNumber{};
