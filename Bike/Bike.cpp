@@ -8,7 +8,7 @@ const int lastID{ 0 };
 Bike::Bike()
 	: bikeId(), bikeMake(""), bikeModel(""), size(0), color(""), bikeDescription("")
 {
-	bikeId = lastID + 1;
+	const int& bikeId = lastID + 1;
 
 
 }
