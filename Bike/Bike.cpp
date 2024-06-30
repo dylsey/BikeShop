@@ -3,8 +3,10 @@
 #include <vector>
 #include <iostream>
 
+
 int Bike::lastBikeId{ 0 };
 //default constructor;
+
 Bike::Bike()
 {
 	lastBikeId++;
@@ -31,11 +33,24 @@ Bike::Bike(const int& bikeId, std::string bikeMake, std::string bikeModel, int s
 		
 }
 
-std::string Bike::displayBikeDetails()
+Bike* Bike::getBike(const int& bikeId, std::vector<Bike> bikes)
 {
+	for (auto& bike : bikes)
+	{
+		if (bike.getBikeId() == bikeId)
+		{
+			return &bike;
+		}
+	}
 
-	return std::string();
+
 }
+//not sure this is necessary
+//std::string Bike::displayBikeDetails()
+//{
+//
+//	return std::string();
+//}
 
 std::string Bike::updateBikeDetail()
 {
@@ -44,13 +59,16 @@ std::string Bike::updateBikeDetail()
 
 void Bike::addWorkHistory(const WorkOrder& workHistory, std::string workDescription)
 {
+	//this points to work history member of the Bike object
+	//pushes back onto the vector of work history for the Bike object
+
+	this->workHistory.push_back(workHistory);
+	//this points to the work description member of the Bike object
+	//sets the work description for the Bike object
+	this->workDescription = workDescription;
 
 }
 
-std::vector<WorkOrder> Bike::displayWorkHistoryByBike()
-{
-	return std::vector<WorkOrder>();
-}
 
 int Bike::getBikeId() const
 {
@@ -78,15 +96,4 @@ std::string Bike::getBikeColor() const
 	return color;
 }
 
-Bike* Bike::getBike(const int& bikeId, std::vector<Bike> bikes)
-{
-	for (auto& bike : bikes)
-	{
-		if (bike.getBikeId() == bikeId)
-		{
-			return &bike;
-		}
-	}
 
-	
-}
