@@ -14,17 +14,15 @@ public:
 	Bike();
 
 	//conversion AKA overloaded constructor
-	Bike(const int& bikeId, std::string bikeMake, std::string bikeModel, int size, std::string color, std::vector<WorkOrder> workHistory);
+	Bike(const int& bikeId, std::string bikeMake, std::string bikeModel, int size, std::string color, std::vector<WorkOrder*>& workOrders);
 
-	//method to display all of the information stored about the bike object that is defined by the members 
-	//std::string displayBikeDetails();
+	Bike* getBike(const int& bikeId, std::vector<Bike*>& bikes);
+
+	//will push back a pointer to a work order onto the work order vector belonging to a bike object
+	void addWorkHistory(WorkOrder* workOrders);
 
 	//need to be able to pass in a value to change a member defining a bike
-	std::string updateBikeDetail();
-
-	//will add string of work history to each bike. will fill the vector of work history for each bike
-	void addWorkHistory(const WorkOrder& workHistory, std::string workDescription);
-
+	void updateBikeDetail(std::string bikeMake, std::string bikeModel, int size, std::string color);
 
 
 	int getBikeId() const;
@@ -33,9 +31,7 @@ public:
 	int getBikesize();
 	std::string getBikeColor() const;
 
-	Bike* getBike(const int& bikeId, std::vector<Bike> bikes);
-
-
+	void print() const;
 
 private:
 	int bikeId{};
@@ -43,8 +39,8 @@ private:
 	std::string bikeModel{};
 	int size{};
 	std::string color{};
-	std::vector<WorkOrder> workHistory{};
+	std::vector<WorkOrder*> workOrders{};
 	//what is the description used for? 
-	std::string workDescription{};
+	//std::string workDescription{};
 
 };

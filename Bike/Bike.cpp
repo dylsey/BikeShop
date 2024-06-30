@@ -3,10 +3,9 @@
 #include <vector>
 #include <iostream>
 
-
 int Bike::lastBikeId{ 0 };
-//default constructor;
 
+//default constructor
 Bike::Bike()
 {
 	lastBikeId++;
@@ -26,25 +25,23 @@ Bike::Bike()
 	std::cin >> color; 
 
 }
+
 //conversion AKA overloaded constructor
-Bike::Bike(const int& bikeId, std::string bikeMake, std::string bikeModel, int size, std::string color, std::vector<WorkOrder> workHistory)
-	:bikeId(bikeId), bikeMake(bikeMake), bikeModel(bikeModel), size(size), color(color), workHistory(workHistory)
+Bike::Bike(const int& bikeId, std::string bikeMake, std::string bikeModel, int size, std::string color, std::vector<WorkOrder*>& workOrders)
+	:bikeId(bikeId), bikeMake(bikeMake), bikeModel(bikeModel), size(size), color(color), workOrders(workOrders)
 {
 		
 }
 
-Bike* Bike::getBike(const int& bikeId, std::vector<Bike> bikes)
+Bike* Bike::getBike(const int& bikeId, std::vector<Bike*>& bikes)
 {
 	for (auto& bike : bikes)
 	{
-		if (bike.getBikeId() == bikeId)
-		{
-			return &bike;
-		}
+		
 	}
-
-
+	return nullptr;
 }
+
 //not sure this is necessary
 //std::string Bike::displayBikeDetails()
 //{
@@ -52,27 +49,22 @@ Bike* Bike::getBike(const int& bikeId, std::vector<Bike> bikes)
 //	return std::string();
 //}
 
-std::string Bike::updateBikeDetail()
+void Bike::updateBikeDetail(std::string bikeMake, std::string bikeModel, int size, std::string color)
 {
-	return std::string();
+	this->bikeMake = bikeMake;
+	this->bikeModel = bikeModel;
+	this->size = size;
+	this->color = color;
 }
 
-void Bike::addWorkHistory(const WorkOrder& workHistory, std::string workDescription)
+void Bike::addWorkHistory(WorkOrder* workOrder)
 {
-	//this points to work history member of the Bike object
-	//pushes back onto the vector of work history for the Bike object
-
-	this->workHistory.push_back(workHistory);
-	//this points to the work description member of the Bike object
-	//sets the work description for the Bike object
-	this->workDescription = workDescription;
-
+	workOrders.push_back(workOrder);
 }
 
 
 int Bike::getBikeId() const
 {
-
 	return bikeId;
 }
 
@@ -94,6 +86,18 @@ int Bike::getBikesize()
 std::string Bike::getBikeColor() const
 {
 	return color;
+}
+
+void Bike::print() const
+{
+
+	std::cout << "Bike ID: " << bikeId << std::endl;
+	std::cout << "Bike Make: " << bikeMake << std::endl;
+	std::cout << "Bike Model: " << bikeModel << std::endl;
+	std::cout << "Bike Size: " << size << std::endl;
+	std::cout << "Bike Color: " << color << std::endl;
+	std::cout << "Work Orders: " << std::endl;
+	
 }
 
 

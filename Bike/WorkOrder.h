@@ -12,7 +12,8 @@ struct Date {
 	int year{};
 };
 
-enum class WorkStatus {open, working, finished};
+//enum class for the status of the work order
+enum class WorkStatus { open, working, finished };
 
 class WorkOrder {
 public:
@@ -22,27 +23,27 @@ public:
 	WorkOrder();
 
 	//conversion constructor. used to load all the info from the work order from the loaded order from the file
-	WorkOrder(const int workId, int customerId, int bikeId, WorkStatus status, Date dateIn, Date dateOut, int orderTotal, std::string workDescription);
+	WorkOrder(const int workId, Customer* customer, Bike* bike, WorkStatus status, Date dateIn, Date dateOut, int orderTotal, std::string workDescription);
 
-	//trying to update unique work order by passing in the workId and returning the a pointer to the WO. I want to only ever update each individual work order and then update the exact work order. Still trying to get a grasp on Pointers and References
+	WorkOrder* getWorkOrder(const int& workId, std::vector<WorkOrder*>& workorders) const;
 
 	//method to filter work order view by status
-	std::vector<WorkOrder> displayAllWorkOrdersByStatus(WorkStatus status);
+	std::vector<WorkOrder*> displayAllWorkOrdersByStatus(WorkStatus status, std::vector<WorkOrder*>& workOrders) const ;
 
 	//retruns the vector of work history for each bike
-	std::vector<WorkOrder> displayWorkHistoryByBike(const int& bikeId);
+	//std::vector<WorkOrder*> displayWorkHistoryByBike(const int& bikeId) const;
 
 	//filter to display work order. need to use dereferences and pointers 
 	//will need for loop
-	WorkOrder* findWorkOrderByCustomerId(int customerId);
+	std::vector<WorkOrder*> findWorkOrdersByCustomer(Customer* customer, std::vector<WorkOrder*>& workOrders) const;
 
 	//might be too complicated for this scope 
 	//WorkOrder* findWorkOrderByCustomerLastName(Customer::lastName);
 
-	void addLaborCosttoWorkOrder(const int& workId, int laborCost);
+	void addLaborCosttoWorkOrder(int laborCost);
 
 	//can update the workStatus, date out, workDescriptoin
-	void updateWorkOrder(const int& workId, WorkStatus status, Date dateOut, std::string  workDescription);
+	void updateWorkOrder(WorkStatus status, Date dateOut, std::string workDescription);
 
 
 
@@ -54,10 +55,7 @@ public:
 	//will grab work order and display the order total. maybe just return an int? 
 	int getWorkOrderTotal() const;
 
-
-	//not sure if i will need more getters for work order class
-	//gets all the bikes
-	//std::vector<Bike> getAllBikes();
+	void print() const;
 
 private:
 	int workId{};
@@ -65,13 +63,16 @@ private:
 	int customerId{};
 	//not sure this is necessary
 	int bikeId{};
+	Customer* customer;
+	Bike* bike;
+	WorkStatus status;
 	Date dateIn{};
 	Date dateOut{};
 	int laborCost{};
-	int orderTotal{};
+	float orderTotal{0.0f};
 	std::string workDescription{};
 	//not sure these are necessary
-	//std::vector<Bike> bikes{};
-	//std::vector<Customer> customers{};
+	std::vector<Bike*> bikes{};
+	std::vector<Customer*> customers{};
 
 };

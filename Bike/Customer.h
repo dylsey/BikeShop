@@ -15,32 +15,25 @@ class Customer
 		Customer();
 
 		//overload AKA conversion constructor
-		Customer(const int& customerId, std::string firstName, std::string lastName, std::vector<Bike>& bikes);
-
-		//gets all the bikes belonging to a customer by passed customer id
-		std::vector<Bike> displayCustomersBikes(const int& customerId);
-
-		//adds a bike object to the vector of bikes belonging to a customer
-		void addBikeToCustomer(const Bike& bike);
-		
-		//removes a bike from customer bike vector
-		void removeBikeFromCustomer(const Bike& bike);
+		Customer(const int& customerId, std::string firstName, std::string lastName, std::vector<Bike*>& bikes);
 
 		//might be easier to use setters for this? 
-		//can update name, phone, email, 
-		void updateCustomerInfo(std::string firstName, std::string lastName, std::string phoneNumber);
+	//can update name, phone, email, etc if more functionality is ever needed 
+		void updateCustomerInfo(std::string firstName, std::string lastName);
 
 		//main customer finding method? 
-		Customer* getCustomerById(const int& customerId, std::vector<Customer>& customers);
+		static Customer* getCustomerById(const int& customerId, std::vector<Customer*>& customers);
 
-		//extra methods for searching for customer. May not be necessay but will be nice for extra flavor and eventual functoinality
-		Customer* findCustomerByPhoneNumber(const std::string& phoneNumber);
+		static Customer* findCustomerByName(const std::string& firstName, const std::string& lastName, std::vector<Customer*>& customers);
 
-		Customer* findCustomerByLastName(const std::string& lastName);
-	
-		Customer* findCustomerByFirstName(const std::string& firstName);
+		//adds a bike object to the vector of bikes belonging to a customer
+		void addBikeToCustomer(Bike* bike);
 
-		
+		//gets all the bikes belonging to a customer by passed customer id
+		std::vector<Bike*> displayCustomersBikes(const int& customerId, std::vector<Bike*>& bikes) const;
+
+		//removes a bike from customer bike vector. seems to be complicated to remove something from a vector
+		//void removeBikeFromCustomer(const int& bikeId);
 
 		//getters and setters
 		int getCustomerID() const;
@@ -49,10 +42,7 @@ class Customer
 
 		std::string getLastName() const;
 
-		std::string getPhoneNumber() const; 
-
-		
-
+		void print() const;
 
 private:
 	int customerId{};
@@ -60,6 +50,6 @@ private:
 	std::string lastName{};
 	//std::string phoneNumber{};
 	//std::string email{};
-	std::vector<Bike> bikes{};
+	std::vector<Bike*> bikes{};
 
 };		
