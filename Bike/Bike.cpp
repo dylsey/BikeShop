@@ -5,6 +5,9 @@
 
 int Bike::lastBikeId{ 0 };
 
+//class Customer;
+//class WorkOrder;
+
 //default constructor
 Bike::Bike()
 {
@@ -33,21 +36,18 @@ Bike::Bike(const int& bikeId, std::string bikeMake, std::string bikeModel, int s
 		
 }
 
+//gets a bike by its id from the bike vector
 Bike* Bike::getBike(const int& bikeId, std::vector<Bike*>& bikes)
 {
 	for (auto& bike : bikes)
 	{
-		
+		if (bike->getBikeId() == bikeId)
+		{
+			return bike;
+		}
 	}
 	return nullptr;
 }
-
-//not sure this is necessary
-//std::string Bike::displayBikeDetails()
-//{
-//
-//	return std::string();
-//}
 
 void Bike::updateBikeDetail(std::string bikeMake, std::string bikeModel, int size, std::string color)
 {
@@ -78,7 +78,7 @@ std::string Bike::getBikeModel() const
 	return bikeModel;
 }
 
-int Bike::getBikesize()
+int Bike::getBikeSize()
 {
 	return size;
 }
@@ -89,15 +89,36 @@ std::string Bike::getBikeColor() const
 }
 
 void Bike::print() const
-{
 
+{
 	std::cout << "Bike ID: " << bikeId << std::endl;
 	std::cout << "Bike Make: " << bikeMake << std::endl;
 	std::cout << "Bike Model: " << bikeModel << std::endl;
 	std::cout << "Bike Size: " << size << std::endl;
 	std::cout << "Bike Color: " << color << std::endl;
-	std::cout << "Work Orders: " << std::endl;
-	
 }
 
 
+
+
+	//trying to figure out how to add a bike to a work order
+	// 
+	//std::vector<Bike*> customerBikes = customer->getCustomerBikes();
+	//std::cout << "Add bike to Work Order by Id: " << std::endl;
+	//for (const auto& bike : bikes)
+	//{
+	//	bike->print();
+	//	//std::cout << "Bike Id: " << bike->getBikeId() << " Bike Make: " << bike->getBikeMake() << " Bike Model: " << bike->getBikeModel() << std::endl;
+	//}
+	//int bikeId;
+	//std::cin >> bikeId;
+
+	//for (const auto& bike : bikes)
+	//{
+	//	if (bike->getBikeId() == bikeId)
+	//	{
+	//		return bike;
+	//	}
+	//}
+	//std::cout << "Bike not found." << std::endl;
+	//return nullptr;

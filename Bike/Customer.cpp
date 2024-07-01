@@ -6,6 +6,9 @@
 
 
 int Customer::lastCustomerId{ 0 };
+class Bike;
+class WorkOrder;
+
 //default constructor
 Customer::Customer()
 {
@@ -26,6 +29,30 @@ Customer::Customer(const int& customerId, std::string firstName, std::string las
 {
 
 }
+
+//customer chooser helper method. returns customer pointer object. 
+Customer* chooseCustomer(const std::vector<Customer*>& customers)
+{
+	std::cout << "Please choose a customer by Id: " << std::endl;
+	for (const auto& customer : customers)
+	{
+		customer->print();
+		//std::cout << "Customer Id: " << customer->getCustomerID() << " :: " << customer->getFirstName() << " " << customer->getLastName() << std::endl;
+	}
+	int customerId;
+	std::cin >> customerId;
+
+	for (const auto& customer : customers)
+	{
+		if (customer->getCustomerID() == customerId)
+		{
+			return customer;
+		}
+	}
+	std::cout << "Customer not found" << std::endl;
+	return nullptr;
+}
+
 
 //used to using setters for this in Java as this.member = member  
 //can update name, phone, email? should this be so simple? 
@@ -69,9 +96,13 @@ void Customer::addBikeToCustomer(Bike* bike)
 
 }
 
-std::vector<Bike*> Customer::displayCustomersBikes(const int& customerId, std::vector<Bike*>& bikes) const
+std::vector<Bike*> Customer::getCustomerBikes() const
 {
-	return Customer::bikes; 
+	/*if (this->customerId == customerId)
+	{
+		return bikes;
+	}*/
+	return bikes;
 }
 
 
@@ -90,7 +121,7 @@ std::string Customer::getFirstName() const
 
 std::string Customer::getLastName() const
 {
-	return std::string();
+	return lastName;
 }
 
 void Customer::print() const
@@ -98,9 +129,6 @@ void Customer::print() const
 	std::cout << "Customer ID: " << customerId << std::endl;
 	std::cout << "First Name: " << firstName << std::endl;
 	std::cout << "Last Name: " << lastName << std::endl;
-	std::cout << "Bikes: " << std::endl;
+	//std::cout << "Bikes: " << std::endl;
 		
 }
-
-
-

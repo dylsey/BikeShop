@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 
+//forward declarations
 class Bike;
 class Customer;
 
@@ -23,56 +24,40 @@ public:
 	WorkOrder();
 
 	//conversion constructor. used to load all the info from the work order from the loaded order from the file
-	WorkOrder(const int workId, Customer* customer, Bike* bike, WorkStatus status, Date dateIn, Date dateOut, int orderTotal, std::string workDescription);
+	WorkOrder(const int workId, Customer* customer, Bike* bike, WorkStatus status, Date dateIn, Date dateOut, float orderTotal, std::string workDescription);
 
-	WorkOrder* getWorkOrder(const int& workId, std::vector<WorkOrder*>& workorders) const;
+	//can update the workStatus, date out, workDescriptoin
+	void updateWorkOrder(Customer* customer, Bike* bike, WorkStatus status, Date dateOut, std::string workDescription);
+
+	//WorkOrder* chooseWorkOrder(const std::vector<WorkOrder*>& workOrders);
+
+	WorkOrder* getWorkOrderByWorkId(const int& workId, std::vector<WorkOrder*>& workorders) const;
 
 	//method to filter work order view by status
-	std::vector<WorkOrder*> displayAllWorkOrdersByStatus(WorkStatus status, std::vector<WorkOrder*>& workOrders) const ;
+	std::vector<WorkOrder*> displayAllWorkOrdersByStatus(WorkStatus status, std::vector<WorkOrder*>& workOrders) const;
 
-	//retruns the vector of work history for each bike
-	//std::vector<WorkOrder*> displayWorkHistoryByBike(const int& bikeId) const;
-
-	//filter to display work order. need to use dereferences and pointers 
-	//will need for loop
 	std::vector<WorkOrder*> findWorkOrdersByCustomer(Customer* customer, std::vector<WorkOrder*>& workOrders) const;
-
-	//might be too complicated for this scope 
-	//WorkOrder* findWorkOrderByCustomerLastName(Customer::lastName);
 
 	void addLaborCosttoWorkOrder(int laborCost);
 
-	//can update the workStatus, date out, workDescriptoin
-	void updateWorkOrder(WorkStatus status, Date dateOut, std::string workDescription);
-
-
-
 	//getters and setters
-	WorkOrder* getWorkOrder(const int& workId) const;
-
 	int getWorkID() const;
 
 	//will grab work order and display the order total. maybe just return an int? 
-	int getWorkOrderTotal() const;
+	float getWorkOrderTotal() const;
 
 	void print() const;
 
 private:
 	int workId{};
-	//not sure this is necessary
-	int customerId{};
-	//not sure this is necessary
-	int bikeId{};
 	Customer* customer;
 	Bike* bike;
 	WorkStatus status;
 	Date dateIn{};
 	Date dateOut{};
 	int laborCost{};
-	float orderTotal{0.0f};
+	float orderTotal{};
 	std::string workDescription{};
-	//not sure these are necessary
-	std::vector<Bike*> bikes{};
-	std::vector<Customer*> customers{};
-
+	//std::vector<Bike*> bikes{};
+	//std::vector<Customer*> customers{};
 };
